@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="WasteSmart Pro - Aplikasi pengelolaan sampah berbasis komunitas. Kelola sampah, kumpulkan poin, dan bantu lingkungan bersama kami.">
+    <title>WasteSmart Pro | Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="auth-page">
+
+    <!-- Animated background particles -->
+    <div class="bg-particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <div class="auth-container">
+        <div class="auth-card">
+            <!-- Logo / Brand -->
+            <div class="brand">
+                <div class="brand-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <path d="M16 3C9.37 3 4 8.37 4 15s5.37 12 12 12 12-5.37 12-12S22.63 3 16 3z" fill="url(#g1)"/>
+                        <path d="M11 15l3.5 3.5L21 11" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M8 10c2-4 8-5 11-2" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" stroke-linecap="round"/>
+                        <defs>
+                            <linearGradient id="g1" x1="4" y1="3" x2="28" y2="27" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#22c55e"/>
+                                <stop offset="1" stop-color="#16a34a"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <h1 class="brand-name">WasteSmart <span>Pro</span></h1>
+            </div>
+
+            <p class="auth-tagline">Kelola sampah, raih poin, jaga bumi 🌱</p>
+
+            <!-- Tabs -->
+            <div class="auth-tabs" role="tablist">
+                <button id="tab-login" class="tab-btn active" role="tab" aria-selected="true" onclick="switchTab('login')">Login</button>
+                <button id="tab-register" class="tab-btn" role="tab" aria-selected="false" onclick="switchTab('register')">Register</button>
+            </div>
+
+            <!-- Login Form -->
+            <form id="form-login" class="auth-form" onsubmit="handleLogin(event)" novalidate>
+                <div class="form-group">
+                    <label for="login-user">Username</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        </span>
+                        <input id="login-user" type="text" placeholder="Masukkan username" required autocomplete="username">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="login-pass">Password</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        </span>
+                        <input id="login-pass" type="password" placeholder="Masukkan password" required autocomplete="current-password">
+                        <button type="button" class="toggle-password" onclick="togglePassword('login-pass', this)" aria-label="Tampilkan password">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div id="login-error" class="alert alert-error" role="alert" hidden></div>
+                <button id="btn-login" type="submit" class="btn-primary">
+                    <span class="btn-text">Masuk</span>
+                    <span class="btn-loader" hidden>
+                        <span class="spinner"></span>
+                    </span>
+                </button>
+            </form>
+
+            <!-- Register Form -->
+            <form id="form-register" class="auth-form" onsubmit="handleRegister(event)" novalidate style="display:none">
+                <div class="form-group">
+                    <label for="reg-user">Username</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        </span>
+                        <input id="reg-user" type="text" placeholder="Pilih username" required minlength="3" autocomplete="username">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="reg-pass">Password</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        </span>
+                        <input id="reg-pass" type="password" placeholder="Minimal 6 karakter" required minlength="6" autocomplete="new-password">
+                        <button type="button" class="toggle-password" onclick="togglePassword('reg-pass', this)" aria-label="Tampilkan password">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="reg-confirm">Konfirmasi Password</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        </span>
+                        <input id="reg-confirm" type="password" placeholder="Ulangi password" required autocomplete="new-password">
+                    </div>
+                </div>
+                <div id="reg-error" class="alert alert-error" role="alert" hidden></div>
+                <div id="reg-success" class="alert alert-success" role="alert" hidden></div>
+                <button id="btn-register" type="submit" class="btn-primary">
+                    <span class="btn-text">Daftar Sekarang</span>
+                    <span class="btn-loader" hidden>
+                        <span class="spinner"></span>
+                    </span>
+                </button>
+            </form>
+
+            <p class="auth-footer">WasteSmart Pro &copy; 2025 &mdash; Bersama Jaga Bumi 🌍</p>
+        </div>
+
+        <!-- Side illustration -->
+        <div class="auth-illustration" aria-hidden="true">
+            <div class="illus-card">
+                <div class="illus-icon">♻️</div>
+                <h3>Daur Ulang Sampah</h3>
+                <p>Tukarkan sampahmu menjadi poin reward berharga</p>
+            </div>
+            <div class="illus-stats">
+                <div class="stat-bubble">
+                    <strong>🏆 10 Poin</strong>
+                    <span>per kg sampah</span>
+                </div>
+                <div class="stat-bubble">
+                    <strong>🌿 Eco</strong>
+                    <span>Ramah lingkungan</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        // Check if already logged in
+        if (localStorage.getItem("ws_user")) {
+            window.location.href = "dashboard.html";
+        }
+
+        function switchTab(tab) {
+            const isLogin = tab === "login";
+            document.getElementById("form-login").style.display = isLogin ? "block" : "none";
+            document.getElementById("form-register").style.display = isLogin ? "none" : "block";
+            document.getElementById("tab-login").classList.toggle("active", isLogin);
+            document.getElementById("tab-register").classList.toggle("active", !isLogin);
+            document.getElementById("tab-login").setAttribute("aria-selected", isLogin);
+            document.getElementById("tab-register").setAttribute("aria-selected", !isLogin);
+        }
+
+        function togglePassword(inputId, btn) {
+            const input = document.getElementById(inputId);
+            const isPassword = input.type === "password";
+            input.type = isPassword ? "text" : "password";
+            btn.querySelector("svg").style.opacity = isPassword ? "0.5" : "1";
+        }
+
+        async function handleLogin(e) {
+            e.preventDefault();
+            const btn = document.getElementById("btn-login");
+            const errEl = document.getElementById("login-error");
+            const username = document.getElementById("login-user").value.trim();
+            const password = document.getElementById("login-pass").value;
+
+            errEl.hidden = true;
+            setLoading(btn, true);
+
+            try {
+                const res = await fetch(API + "/auth/login", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ username, password })
+                });
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.message);
+                localStorage.setItem("ws_user", JSON.stringify(data));
+                window.location.href = "dashboard.html";
+            } catch (err) {
+                showAlert(errEl, err.message || "Gagal login");
+            } finally {
+                setLoading(btn, false);
+            }
+        }
+
+        async function handleRegister(e) {
+            e.preventDefault();
+            const btn = document.getElementById("btn-register");
+            const errEl = document.getElementById("reg-error");
+            const successEl = document.getElementById("reg-success");
+            const username = document.getElementById("reg-user").value.trim();
+            const password = document.getElementById("reg-pass").value;
+            const confirm = document.getElementById("reg-confirm").value;
+
+            errEl.hidden = true;
+            successEl.hidden = true;
+
+            if (password !== confirm) {
+                showAlert(errEl, "Password tidak cocok");
+                return;
+            }
+
+            setLoading(btn, true);
+            try {
+                const res = await fetch(API + "/auth/register", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ username, password })
+                });
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.message);
+                showAlert(successEl, data.message);
+                e.target.reset();
+                setTimeout(() => switchTab("login"), 1500);
+            } catch (err) {
+                showAlert(errEl, err.message || "Gagal register");
+            } finally {
+                setLoading(btn, false);
+            }
+        }
+
+        function showAlert(el, msg) {
+            el.textContent = msg;
+            el.hidden = false;
+        }
+
+        function setLoading(btn, loading) {
+            btn.disabled = loading;
+            btn.querySelector(".btn-text").style.display = loading ? "none" : "inline";
+            btn.querySelector(".btn-loader").hidden = !loading;
+        }
+    </script>
+</body>
+
+</html>
