@@ -81,6 +81,11 @@
                         <span class="spinner"></span>
                     </span>
                 </button>
+                <button type="button" onclick="loginAsGuest()" style="background-color: #6c757d;
+                color: white; margin-top: 10px; border: none; padding: 10px; cursor: pointer;
+                border-radius: 5px; width: 100%;">
+                    Masuk sebagai Guest
+                </button>
             </form>
 
             <!-- Register Form -->
@@ -123,6 +128,11 @@
                         <span class="spinner"></span>
                     </span>
                 </button>
+                <button type="button" onclick="loginAsGuest()" style="background-color: #6c757d;
+                color: white; margin-top: 10px; border: none; padding: 10px; cursor: pointer;
+                border-radius: 5px; width: 100%;">
+                    Masuk sebagai Guest
+                </button>
             </form>
 
             <p class="auth-footer">WasteSmart Pro &copy; 2025 &mdash; Bersama Jaga Bumi 🌍</p>
@@ -152,6 +162,16 @@
     <script>
         // Check if already logged in
         if (localStorage.getItem("ws_user")) {
+            window.location.href = "dashboard.html";
+        }
+
+        function loginAsGuest() {
+            const guestUser = {
+                name: "Tamu (Guest)",
+                email: "guest@wastesmart.com",
+                role: "guest"
+            };
+            localStorage.setItem("ws_user", JSON.stringify(guestUser));
             window.location.href = "dashboard.html";
         }
 
