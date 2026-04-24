@@ -623,6 +623,27 @@
             setTimeout(() => { toast.hidden = true; }, 3500);
         }
     </script>
+    <script>
+    const user = JSON.parse(localStorage.getItem("ws_user"));
+
+    if (!user) {
+        window.location.href = "index.html";
+    }
+
+    if (user && user.role === "guest") {
+        console.log("Mode Tamu Aktif");
+        
+        const btnSave = document.getElementById("btn-save");
+        if (btnSave) {
+            btnSave.style.display = "none";
+        }
+
+        const userNameElement = document.getElementById("user-name");
+        if (userNameElement) {
+            userNameElement.innerText = "Mode Tamu";
+        }
+    }
+    </script>
 </body>
 
 </html>
